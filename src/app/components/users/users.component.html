@@ -1,0 +1,31 @@
+<div class="container profile-container" *ngIf="userData">
+  <div class="profile-header">
+    <!--Message d'accueil du profil-->
+    <h1>Bienvenue, {{ userData.email }} !</h1>
+  </div>
+  <div class="profile-form">
+    <!--Formulaire d'update des informations de l'utilisateur avec email, mot de passe et bouton de mise à jour-->
+    <h2>Mettre à jour vos informations</h2>
+    <form (ngSubmit)="updateUser(userData.Id, updatedEmail.value, updatedPassword.value)">
+      <div class="input-group">
+        <label for="updatedEmail">Adresse e-mail :</label>
+        <input type="email" id="updatedEmail" #updatedEmail placeholder="Entrez la nouvelle adresse">
+      </div>
+      <div class="input-group">
+        <label for="updatedPassword">Mot de passe :</label>
+        <input type="password" id="updatedPassword" #updatedPassword placeholder="Entrez le nouveau mot de passe">
+      </div>
+      <button type="submit" class="btn btn-primary">Mettre à jour </button>
+    </form>
+  </div>
+  <!--Boutons pour supprimer le compte et pour se déconnecter-->
+  <div class="profile-actions">
+    <button class="btn btn-danger" (click)="deleteUser(userData.Id)">Supprimer le compte</button>
+    <a class="logout-link" (click)="logout()">Se déconnecter</a>
+  </div>
+</div>
+<!--Affichage du message d'erreur et d'un lien vers la page d'inscription-->
+<div *ngIf="errorMessage" class="alert alert-danger mt-3"> {{ errorMessage }}  </div>
+<div class="container" *ngIf="!userData">
+  <a [routerLink]="['../']"> Vous n'êtes pas connecté. Inscrivez-vous</a>
+</div>

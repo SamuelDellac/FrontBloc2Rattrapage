@@ -1,0 +1,31 @@
+<div class="form-container">
+    <div class="row">
+        <div class="col-4">
+            <!--Formualire d'inscription avec trois champs : email, mot de passe et 
+                confirmation du mot de passe et un bouton d'inscription-->
+            <form #form="ngForm" (ngSubmit)="register()">
+                <h1>Formulaire d'inscription</h1>
+                <div class="mb-3">
+                    <label for="mail" class="form-label">Adresse mail</label>
+                    <input type="email" class="form-control" id="mail" name="mail" [(ngModel)]="newUser.email">
+                </div>
+                <div class="mb-3">
+                    <label for="mdp" class="form-label">Mot de passe</label>
+                    <input type="password" class="form-control" id="mdp" name="mdp" [(ngModel)]="newUser.password">
+                </div>
+                <div class="mb-3">
+                    <label for="confirmMdp" class="form-label">Confirmez le mot de passe</label>
+                    <input type="password" class="form-control" id="confirmMdp" name="confirmMdp" [(ngModel)]="confirmPassword">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Créer le compte</button>
+                <!--Lien pour si l'utilisateur dispose déja d'un compte-->
+                <a [routerLink]="['./login']">Vous avez déjà un compte? Connectez-vous</a>
+            </form>
+            <!--Affichage d'un message en cas d'erreur-->
+            <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+                {{ errorMessage }}
+            </div>
+        </div>
+    </div>
+</div>

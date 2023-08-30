@@ -1,0 +1,22 @@
+
+<div class="form-container">
+    <!--Formulaire de connexion avec deux champs (mail et mot de passe) et un bouton de connexion-->
+    <form (ngSubmit)="login()">
+        <h1>Connexion</h1>
+        <div class="mb-3">
+            <label for="mail" class="form-label">Adresse mail</label>
+            <input type="email" class="form-control" id="mail" name="mail" [(ngModel)]="logingUser.email">
+        </div>
+        <div class="mb-3">
+            <label for="mdp" class="form-label">Mot de passe</label>
+            <input type="password" class="form-control" id="mdp" name="mdp" [(ngModel)]="logingUser.password">
+        </div>
+        <button type="submit">Se connecter</button>
+    <!-- Lien pour la page d'inscription si l'utilisateur n'a pas de compte-->
+        <a [routerLink]="['../']">Pas de compte ? Inscrivez-vous</a>
+
+        <!-- Affichage du message d'erreur en cas de fail-->
+        <div *ngIf="errorMessage" class="alert alert-danger mt-3"> {{ errorMessage }}  </div>
+    </form>
+</div>
+  
